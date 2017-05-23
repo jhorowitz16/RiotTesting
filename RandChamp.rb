@@ -18,7 +18,8 @@ end
 
 
 # get the ids
-ids_url = "https://na.api.pvp.net/api/lol/na/v1.2/champion?api_key=" + api_key
+old_ids_url = "https://na.api.pvp.net/api/lol/na/v1.2/champion?api_key=" + api_key
+ids_url = "https://na1.api.riotgames.com/lol/platform/v3/champions?api_key=" + api_key
 response = HTTParty.get(ids_url)
 ids = []
 case response.code
