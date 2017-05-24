@@ -95,17 +95,70 @@ def prompt_name_request()
 end
 
 
-# report whether data contains name
+def prompt_name_request_looped(data)
+  id = -1
+  while id < 0
+    name = prompt_name_request()
+    id = find_name(data, name)
+  end
+  return id
+end
+
+
+# report whether data contains name, and return the ID
 def find_name(data, name)
   found = false
   data.each do |champ|
     if champ[1].downcase == name
       puts ">>> " + champ[1] + ", " + champ[2]
       found = true
+      return champ[0].to_i
     end
   end
   if not found
-    puts name + " was not found"
+    puts name + " was not found. Please try again!"
   end
+  return -1 
 end
 
+
+# using the v3 static data endpoint - write to csv TBD
+def write_v3_champ_data(api_key, filename)
+
+  url = "https://na1.api.riotgames.com/lol/static-data/v3/champions"
+  url += "/?api_key=" + api_key
+  response = HTTParty.get(url)
+  case response.code
+    when 200
+      response_data = response["data"]
+      puts response_data.keys
+      puts response_data["Annie"]
+    when 404
+      puts "error 404"
+  end
+  data = []
+  write_champ_data(filename, data)
+end
+
+
+# for the champ ID, get the champ's stats in the form of a hash
+# for now grab just AD, AS, hp, armor (all base) as 'attributes'
+def get_champ_stats(api_key, id, attributes)
+  url = "https://na1.api.riotgames.com/lol/static-data/v3/champions"
+  url += "/" + id.to_s + "?api_key=" + api_key + "&champData=stats"
+  response = HTTParty.get(url)
+  stats = {}
+  case response.code
+    when 200
+      stats = response["stats"]
+    when 404
+      puts "failed to find stats for the id " + id.to_s
+      return {}
+  end
+  ret_set = []
+  attributes.each do |attr|
+    ret_set.push(stats[attr])
+  end
+  puts ret_set
+  return ret_set
+end
