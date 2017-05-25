@@ -56,6 +56,12 @@ def collect_data(api_key, ids)
 end
 
 
+# generic write to file function
+def write_list_to_file(filename, data)
+  File.open(filename, 'w') {|file| file.write(data.to_s)}
+end
+
+
 # write the champ data to a csv for future use
 def write_champ_data(filename, data)
   CSV.open(filename, "wb") do |csv|
@@ -162,3 +168,35 @@ def get_champ_stats(api_key, id, attributes)
   puts ret_set
   return ret_set
 end
+
+
+# for the name string, return whether the name is taken
+def lookup_name(api_key, name)
+  url = "https://na1.api.riotgames.com/lol/summoner/v3/summoners/by-name"
+  url += "/" + name + "?api_key=" + api_key 
+  response = HTTParty.get(url)
+  case response.code
+    when 200
+      puts ":) found!: " + name
+      return true
+    when 404
+      puts "not found: " + name
+      return false 
+  end
+end
+
+
+# get all the pokemon moves by scraping pokemondb.net
+def get_pokemon_moves()
+  moves = []
+  url = "https://pokemondb.net/move/all"
+  page = HTTParty.get(url)
+  parse_page = Nokogiri::HTML(page)
+  parse_page.css('.ent-name').map do |a|
+    moves.push(a.text)
+  end
+  puts moves
+  return moves
+end
+
+
