@@ -11,6 +11,28 @@ def get_api_key()
 end
 
 
+# select the key from the keys list with mod
+def select_key(count, keys)
+  return keys[count % keys.length]
+end
+
+
+# generate the (3) keys and return them
+def generate_keys()
+  bobhi = read_key("key_bobhi345.txt")
+  floatlift = read_key("key_FloatLift.txt")
+  sirbob = read_key("key_sirbob3.txt")
+  return [bobhi, floatlift, sirbob]
+end
+
+def read_key(filename)
+  File.open(filename).each do |line|
+    return line
+  end
+end
+
+
+
 # get the champion ids with a request to the champion endpoint
 def get_ids(api_key)
   old_ids_url = "https://na.api.pvp.net/api/lol/na/v1.2/champion?api_key=" + api_key
@@ -58,7 +80,11 @@ end
 
 # generic write to file function
 def write_list_to_file(filename, data)
-  File.open(filename, 'w') {|file| file.write(data.to_s)}
+  file = File.open(filename, "w")
+  data.each do |d|
+    file.write(d.to_s + "\n")
+  end
+  file.close unless file.nil?
 end
 
 
@@ -179,9 +205,13 @@ def lookup_name(api_key, name)
     when 200
       puts ":) found!: " + name
       return true
-    when 404
+    when 500 
       puts "not found: " + name
       return false 
+    else
+      puts response.code
+      puts "bad key: " + api_key
+      return nil
   end
 end
 
@@ -195,8 +225,6 @@ def get_pokemon_moves()
   parse_page.css('.ent-name').map do |a|
     moves.push(a.text)
   end
-  puts moves
   return moves
 end
-
 

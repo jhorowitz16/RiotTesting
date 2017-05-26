@@ -1,0 +1,5 @@
+total time difference: 460.893194
+average time: 0.6574795920114123
+2
+taken: 577
+not_taken: 124
