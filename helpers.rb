@@ -22,7 +22,8 @@ def generate_keys()
   bobhi = read_key("key_bobhi345.txt")
   floatlift = read_key("key_FloatLift.txt")
   sirbob = read_key("key_sirbob3.txt")
-  return [bobhi, floatlift, sirbob]
+  api = read_key("key_JustForTheApiLul.txt")
+  return [bobhi, floatlift, sirbob, api]
 end
 
 def read_key(filename)
@@ -228,3 +229,51 @@ def get_pokemon_moves()
   return moves
 end
 
+
+# assume summoner names must be letters and numbers
+def get_poss_characters()
+  alpha = "abcdefghijklmnopqrstuvwxyz0123456789"
+  poss = []
+  for i in (0..alpha.length-1)
+    poss.push(alpha[i])
+  end
+  return poss
+end
+
+# generate 1 character names
+def get_one_char_names()
+  names = []
+  chars = get_poss_characters
+  for pos in 0..chars.length-1
+    names.push(chars[pos])
+  end
+  return names
+end
+
+
+# generate 2 character names
+def get_two_char_names()
+  names = []
+  chars = get_poss_characters
+  for i in 5..chars.length-1
+    for j in 0..chars.length-1
+      names.push(chars[i] + chars[j])
+    end
+  end
+  return names
+end
+
+
+# generate 3 character names
+def get_three_char_names()
+  names = []
+  chars = get_poss_characters
+  for i in 0..chars.length-1
+    for j in 0..chars.length-1
+      for k in 0..chars.length-1
+        names.push(chars[i] + chars[j] + chars[k])
+      end
+    end
+  end
+  return names
+end
