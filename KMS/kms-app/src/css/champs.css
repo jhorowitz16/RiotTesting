@@ -1,0 +1,15 @@
+.champs-wrapper {
+  background-color: silver;
+  width: 100%;
+}
+
+.champs-table {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.champs-table__champ {
+  height: 300px;
+  width: 100px;
+  background-color: dimgrey;
+}
