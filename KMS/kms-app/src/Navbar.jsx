@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import logo from './data/logo.svg';
 import './css/navbar.css';
 
 class Navbar extends Component {
