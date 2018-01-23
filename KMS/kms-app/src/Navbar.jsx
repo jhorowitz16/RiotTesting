@@ -13,12 +13,6 @@ class Navbar extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-
-        <table>
-          <div>hello</div>
-          <div>hello</div>
-
-        </table>
       </div>
     );
   }

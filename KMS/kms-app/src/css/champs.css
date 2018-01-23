@@ -1,3 +1,5 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
 .champs-wrapper {
   background-color: silver;
   width: 100%;
@@ -11,4 +13,25 @@
 .champs-table__champ {
   padding: 10px;
   text-align: center;
+}
+
+.champs-table__champ:hover {
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+.green {
+  background-color: #16a085;
+}
+
+.blue {
+  background-color: #34495e;
+}
+
+.red {
+  background-color: #e74c3c;
+}
+
+.logo {
+  transform: scale(4, 4);
 }

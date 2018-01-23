@@ -20,23 +20,25 @@ class Champs extends Component {
     return (
       <div className='champs-wrapper'>
         <table className='champs-table'>
-          <tr>
-            <td>
-              <div className="champs-table__champ">
-                {getChamp("aatrox")}
-              </div>
-            </td>
-            <td>
-              <div className="champs-table__champ">
-                {getChamp("ahri")}
-              </div>
-            </td>
-            <td>
-              <div className="champs-table__champ">
-                {getChamp("akali")}
-              </div>
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>
+                <div className="champs-table__champ">
+                  {getChamp("aatrox", 'red', 'bomb')}
+                </div>
+              </td>
+              <td>
+                <div className="champs-table__champ">
+                  {getChamp("ahri", 'blue', 'heart')}
+                </div>
+              </td>
+              <td>
+                <div className="champs-table__champ">
+                  {getChamp("akali", 'green', 'bolt')}
+                </div>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     );
