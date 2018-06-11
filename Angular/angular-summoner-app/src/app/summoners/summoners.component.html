@@ -1,0 +1,9 @@
+<h2>{{ summoner.name | uppercase }} Details</h2>
+<div><span>id: </span>{{ summoner.id }}</div>
+<div><span>name: </span>{{ summoner.name }}</div>
+
+<div>
+    <label>name:
+      <input [(ngModel)]="summoner.name" placeholder="name">
+    </label>
+</div>
