@@ -21,4 +21,13 @@ export class SummonersComponent implements OnInit {
   ngOnInit() {
   }
 
+  selectedSummoner: Summoner;
+
+  onSelect(summoner: Summoner) {
+    console.log("selected: " + summoner.name);
+    // console.log("before: " + this.selectedSummoner.name);
+    this.selectedSummoner = summoner;
+    console.log("after: " + this.selectedSummoner.name);
+  }
+
 }
