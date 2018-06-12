@@ -1,4 +1,4 @@
-<h2>{{ summoner.name | uppercase }} Details</h2>
+<!-- <h2>{{ summoner.name | uppercase }} Details</h2>
 <div><span>id: </span>{{ summoner.id }}</div>
 <div><span>name: </span>{{ summoner.name }}</div>
 
@@ -6,4 +6,11 @@
     <label>name:
       <input [(ngModel)]="summoner.name" placeholder="name">
     </label>
-</div>
+</div> -->
+
+<h2>Summoners</h2>
+<ul class="summoners">
+  <li *ngFor="let summoner of summoners">
+    <span class="badge">{{summoner.id}}</span> {{summoner.name}}
+  </li>
+</ul>
