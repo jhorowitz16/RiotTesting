@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Summoner } from '../summoner';
+import { SUMMONERS } from '../mock-summoners'
 
 @Component({
   selector: 'app-summoners',
@@ -9,6 +10,7 @@ import { Summoner } from '../summoner';
 export class SummonersComponent implements OnInit {
 
   // summoner = 'summoner7';
+  summoners = SUMMONERS;
   summoner: Summoner = {
     id: 1,
     name: 'fed7'
